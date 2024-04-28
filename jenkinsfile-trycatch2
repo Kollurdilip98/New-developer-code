@@ -1,6 +1,13 @@
-node('built-in')
+pipeline
 {
-stage('Continous-Download')
+agent any
+stages
+{
+stage('Continous-Dowload')
+{
+steps
+{
+script
 {
 try
 {
@@ -12,11 +19,17 @@ mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed
 exit(1)
 }
 }
+}
+}
 stage('Continous-build')
+{
+steps
+{
+script
 {
 try
 {
-sh 'mvn package'
+sh 'mn package'
 }
 catch(Exception e1)
 {
@@ -24,7 +37,13 @@ mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed
 exit(1)
 }
 }
+}
+}
 stage('Continous-Deployment')
+{
+steps
+{
+script
 {
 try
 {
@@ -34,6 +53,9 @@ catch(Exception e2)
 {
 mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
 exit(1)
+}
+}
+}
 }
 }
 }
