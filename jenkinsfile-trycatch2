@@ -29,7 +29,7 @@ script
 {
 try
 {
-sh 'mvn package'
+sh 'm package'
 }
 catch(Exception e1)
 {
