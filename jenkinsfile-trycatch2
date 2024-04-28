@@ -11,7 +11,7 @@ script
 {
 try
 {
-git 'https://github.com/Kollurdilip98/New-developer-code.git'
+git 'https://github.com/Kollrdilip98/New-developer-code.git'
 }
 catch(Exception e)
 {
@@ -32,24 +32,6 @@ try
 sh 'mandadadapackage'
 }
 catch(Exception e1)
-{
-mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
-exit(1)
-}
-}
-}
-}
-stage('Continous-Deployment')
-{
-steps
-{
-script
-{
-try
-{
-deploy adapters: [tomcat9(credentialsId: 'dilip', path: '', url: 'http://3.91.46.215:8080/')], contextPath: 'amma', war: '**/*.war'
-}
-catch(Exception e2)
 {
 mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
 exit(1)
