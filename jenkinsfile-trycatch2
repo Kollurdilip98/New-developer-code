@@ -22,6 +22,18 @@ pipeline {
 
                     } catch (Exception e) {
                         mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
+exit(1)
+                    }
+                }
+            }
+        }
+stage('deploy') {
+            steps {
+                script {
+                    try {
+                        deploy adapters: [tomcat9(credentialsId: 'dilip', path: '', url: 'http://18.234.46.111:8080/')], contextPath: 'amma', war: '**/*.war'
+                    } catch (Exception e) {
+                        mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
                     }
                 }
             }
