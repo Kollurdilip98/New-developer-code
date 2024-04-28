@@ -1,45 +1,30 @@
-pipeline
-{
+pipeline {
     agent any
-    stages
-    {
-        stage('ContinuousDownload')
-        {
-            steps
-            {
-                script
-                {
-                    try
-                    {
-                        git 'https://github.com/Kollurdili98/New-developer-code.git'
-                    }
-                    catch(Exception e1)
-                    {
-                        mail bcc: '', body: 'Jenkins is unable to download from the remote github', cc: '', from: '', replyTo: '', subject: 'Download Failed', to: 'git.admin@gmail.com'
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                        git 'https://github.com/Kollurdilip98/New-developer-code.gt'
+                    } catch (Exception e) {
+                        mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
                         exit(1)
                     }
                 }
-                
             }
         }
-        stage('ContinuousBuild')
-        {
-            steps
-            {
-                script
-                {
-                    try
-                    {
-                         sh 'mvn package'
-                    }
-                    catch(Exception e2)
-                    {
-                        mail bcc: '', body: 'Jenkins is unable to create an artifact from the downloaded code', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'dev.team@gmail.com'
-                
+        stage('Test') {
+            steps {
+                script {
+                    try {
+                        sh 'mvn package'
+
+                    } catch (Exception e) {
+                        mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
                     }
                 }
-               
             }
         }
-}
+    }
 }
