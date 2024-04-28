@@ -29,7 +29,7 @@ script
 {
 try
 {
-sh 'mn package'
+sh 'mvn package'
 }
 catch(Exception e1)
 {
@@ -52,7 +52,6 @@ deploy adapters: [tomcat9(credentialsId: 'dilip', path: '', url: 'http://3.91.46
 catch(Exception e2)
 {
 mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
-exit(1)
 }
 }
 }
