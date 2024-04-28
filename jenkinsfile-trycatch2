@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('download') {
             steps {
                 script {
                     try {
@@ -14,7 +14,7 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('build') {
             steps {
                 script {
                     try {
