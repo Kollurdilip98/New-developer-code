@@ -16,7 +16,7 @@ stage('Continous-build')
 {
 try
 {
-sh 'vn package'
+sh 'mvn package'
 }
 catch(Exception e1)
 {
