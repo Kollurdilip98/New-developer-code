@@ -34,7 +34,6 @@ sh 'mandadadapackage'
 catch(Exception e1)
 {
 mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Download failed', to: 'srinka@gmail.com'
-exit(1)
 }
 }
 }
