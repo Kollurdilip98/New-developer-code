@@ -1,43 +1,24 @@
-pipeline
+node('built-in')
 {
-agent any
-stages
-{
-stage('Continous-download')
-{
-steps
+stage('Continous-Download')
 {
 git 'https://github.com/Kollurdilip98/New-developer-code.git'
 }
-}
-stage('Continous-build')
-{
-steps
+stage('Continous-Build')
 {
 sh 'mvn package'
 }
-}
-stage('Continous-deployment')
+stage('Continous-Deployment')
 {
-steps
-{
-deploy adapters: [tomcat9(credentialsId: 'dilip', path: '', url: 'http://3.91.46.215:8080')], contextPath: 'dilip', war: '**/*.war'
+deploy adapters: [tomcat9(credentialsId: 'dilip', path: '', url: 'http://3.91.46.215:8080/')], contextPath: 'bubby', war: '**/*.war'
 }
-}
-stage('Continous-test')
-{
-steps
+stage('Continous-Testing')
 {
 git 'https://github.com/Kollurdilip98/Testing-Code.git'
-sh 'java -jar /var/lib/jenkins/workspace/Test/testing.jar'
-}
+sh 'java -jar /var/lib/jenkins/workspace/Testing/testing.jar'
 }
 stage('Continous-Delivery')
 {
-steps
-{
-deploy adapters: [tomcat9(credentialsId: 'dilip', path: '', url: 'http://18.234.46.111:8080')], contextPath: 'deepak', war: '**/*.war'
-}
-}
+deploy adapters: [tomcat9(credentialsId: 'dilip', path: '', url: 'http://18.234.46.111:8080/')], contextPath: 'mahesh', war: '**/*.war'
 }
 }
